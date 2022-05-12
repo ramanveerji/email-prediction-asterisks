@@ -15,9 +15,7 @@ def main():
     target = input("Insert email with asterisk: ")
 
     check_target = utils.asteriskDetector(target)
-    if check_target:
-        pass
-    else:
+    if not check_target:
         print("Plis insert a correct email.")
 
     #Contamos los asteriscos y lo imprimimos en pantalla
@@ -82,18 +80,16 @@ def main():
                 em = f"{name}{last_name}{birt[2:4]}@{domain}"
                 emails.append(em)
             #Si el nombre aparece en el username
-            if name in username:
-                #si el username tiene el mismo tamaño que el email
-                if c_username == c_email_username:
-                    em = f"{username}@{domain}"
-                    emails.append(em)
+            if name in username and c_username == c_email_username:
+                em = f"{username}@{domain}"
+                emails.append(em)
             if 1 + c_last_name == c_email_username:
                 letter = name[0]
                 em = f"{letter}{last_name}@{domain}"
                 emails.append(em)
         else:
             d1 = input("Are the exposed letters part of the name? Y/n: ")
-            if d1 == "y" or d1 == "Y" or d1 == "yes" or d1 == "Yes":
+            if d1 in ["y", "Y", "yes", "Yes"]:
                 if c_name + c_last_name == c_email_username:
                     em = f"{name}{last_name}@{domain}"
                     emails.append(em)
@@ -108,17 +104,13 @@ def main():
                 if c_name + c_last_name + c_birt - 2 == c_email_username:
                     em = f"{name}{last_name}{birt[2:4]}@{domain}"
                     emails.append(em)
-                if name in username:
-                    if c_username == c_email_username:
-                        em = f"{username}@{domain}"
-                        emails.append(em)
+                if name in username and c_username == c_email_username:
+                    em = f"{username}@{domain}"
+                    emails.append(em)
                 if len(name[0]) + c_last_name == c_email_username:
                     letter = name[0]
                     em = f"{letter}{last_name}@{domain}"
                     emails.append(em)
-            else:
-                pass
-    #Si lo expuesto aparece en el apellido    
     elif exposed in last_name:
         #Si lo expuesto es igual al apellido
         if exposed == last_name:
@@ -135,13 +127,12 @@ def main():
             if c_last_name + c_name + birt -2 == c_email_username:
                 em = f"{last_name}{name}{birt[2:4]}@{domain}"
                 emails.append(em)
-            if last_name in username:
-                if c_username == c_email_username:
-                    em = f"{username}@{domain}"
-                    emails.append(em)
+            if last_name in username and c_username == c_email_username:
+                em = f"{username}@{domain}"
+                emails.append(em)
         else:
             d2 = input("Are the exposed letters part of the last name? Y/n: ")
-            if d2 == "y" or d2 == "Y" or d2 == "yes" or d2 == "Yes":
+            if d2 in ["y", "Y", "yes", "Yes"]:
                 if c_last_name + c_name == c_email_username:
                     em = f"{last_name}{name}@{domain}"
                     emails.append(em)
@@ -155,10 +146,9 @@ def main():
                 if c_last_name + c_name + birt -2 == c_email_username:
                     em = f"{last_name}{name}{birt[2:4]}@{domain}"
                     emails.append(em)
-                if last_name in username:
-                    if c_username == c_email_username:
-                        em = f"{username}@{domain}"
-                        emails.append(em)
+                if last_name in username and c_username == c_email_username:
+                    em = f"{username}@{domain}"
+                    emails.append(em)
 
     print (emails)
 
@@ -184,12 +174,12 @@ def main():
             print (f"{email} exist.")
             f = open(file_result, "a")
             data = f"{email},True\n"
-            f.write(data)
         else:
             print (f"{email} no exist.")
             f = open(file_result, "a")
             data = f"{email},False\n"
-            f.write(data)
+
+        f.write(data)
         
 main()
 

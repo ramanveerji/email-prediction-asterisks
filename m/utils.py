@@ -5,8 +5,7 @@ import random, time, re
 #Contamos la ocurrencia de los asteriscos
 def asteriskDetector(target):
 
-    c = target.count("*")
-    return c
+    return target.count("*")
 
 
 #Imprimir el baner de cabecera
@@ -16,7 +15,7 @@ char = lambda i: " ".join(random.sample(ascii_letters + digits, k=i)).upper()
 
 def shuffle(line, name_length):
 
-    for x in range(0, random.randint(1, 9)):
+    for _ in range(random.randint(1, 9)):
         print("\t{}".format(char(name_length)), end="\r")
         time.sleep(0.4)
 
@@ -50,7 +49,4 @@ def print_banner(name="Asterisk & Obelix", version="01.00.00", author="Jorge Cor
 def check_email(email):
 
     regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
-    if(re.fullmatch(regex, email)):
-        return True
-    else:
-        return False
+    return bool((re.fullmatch(regex, email)))
